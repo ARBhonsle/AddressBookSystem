@@ -4,35 +4,39 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 /**
- * Address Book creates contact list, adds new contacts, edits contact info, deletes contact info
+ * Address Book creates contact list, adds new contacts, edits contact info, deletes contact info, add multiple contacts
  */
 public class AddressBookMain {
     // variables
     static ArrayList<PersonDetails> contactList = new ArrayList<>();
     static Scanner sc=new Scanner(System.in);
 
-    // method adds contact of person
+    // method adds contact of multiple people
     public static void addContact(PersonDetails person,ArrayList<PersonDetails> contactList){
-        person=new PersonDetails();
-        System.out.println("Give details of contact person:");
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Person First Name: ");
-        person.setFirstName(sc.next());
-        System.out.println("Person Last Name: ");
-        person.setLastName(sc.next());
-        System.out.println("Address: ");
-        person.setAddress(sc.next());
-        System.out.println("City: ");
-        person.setCity(sc.next());
-        System.out.println("State: ");
-        person.setState(sc.next());
-        System.out.println("ZipCode: ");
-        person.setZipCode(sc.nextInt());
-        System.out.println("Email: ");
-        person.setEmail(sc.next());
-        System.out.println("Phone Number: ");
-        person.setPhoneNumber(sc.nextLong());
-        contactList.add(person);
+        System.out.println("Number of contacts to be added");
+        int number= sc.nextInt();
+        for (int i=0;i<number;i++){
+            person=new PersonDetails();
+            System.out.println("Give details of contact person:");
+            Scanner sc=new Scanner(System.in);
+            System.out.println("Person First Name: ");
+            person.setFirstName(sc.next());
+            System.out.println("Person Last Name: ");
+            person.setLastName(sc.next());
+            System.out.println("Address: ");
+            person.setAddress(sc.next());
+            System.out.println("City: ");
+            person.setCity(sc.next());
+            System.out.println("State: ");
+            person.setState(sc.next());
+            System.out.println("ZipCode: ");
+            person.setZipCode(sc.nextInt());
+            System.out.println("Email: ");
+            person.setEmail(sc.next());
+            System.out.println("Phone Number: ");
+            person.setPhoneNumber(sc.nextLong());
+            contactList.add(person);
+        }
     }
     // displays contact info
     public static void displayContact(ArrayList<PersonDetails> contactList)//Display Address book
