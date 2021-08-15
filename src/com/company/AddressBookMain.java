@@ -1,19 +1,32 @@
 package com.company;
 
+import java.util.Scanner;
+
 /**
- * Address Book creates contact list
+ * Address Book creates contact list, adds new contacts
  */
 public class AddressBookMain {
 
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book Program");
-        PersonDetails contactPersons=new PersonDetails("Helen","Carl","London,UK","London","UK","helenCarl@mail.com",2354322,8902347889L);
-        System.out.println("Person Name: "+ contactPersons.getFirstName()+ " "+contactPersons.getLastName());
-        System.out.println("Address: "+contactPersons.getAddress());
-        System.out.println("City: "+contactPersons.getCity());
-        System.out.println("State: "+contactPersons.getState());
-        System.out.println("ZipCode: "+contactPersons.getZipCode());
-        System.out.println("Email: "+contactPersons.getEmail());
-        System.out.println("Phone Number: "+contactPersons.getPhoneNumber());
+        PersonDetails contactPersons=new PersonDetails();
+        System.out.println("Give details of contact person:");
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Person First Name: ");
+        contactPersons.setFirstName(sc.next());
+        System.out.println("Person Last Name: ");
+        contactPersons.setLastName(sc.next());
+        System.out.println("Address: ");
+        contactPersons.setAddress(sc.next());
+        System.out.println("City: ");
+        contactPersons.setCity(sc.next());
+        System.out.println("State: ");
+        contactPersons.setState(sc.next());
+        System.out.println("ZipCode: ");
+        contactPersons.setZipCode(sc.nextInt());
+        System.out.println("Email: ");
+        contactPersons.setEmail(sc.next());
+        System.out.println("Phone Number: ");
+        contactPersons.setPhoneNumber(sc.nextLong());
     }
 }
