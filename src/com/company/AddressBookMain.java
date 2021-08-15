@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 /**
- * Address Book creates contact list, adds new contacts, edits contact info
+ * Address Book creates contact list, adds new contacts, edits contact info, deletes contact info
  */
 public class AddressBookMain {
     // variables
@@ -97,11 +97,19 @@ public class AddressBookMain {
             }
         }
     }
+
+    // deletes contact info
+    public static void deleteContact() {
+        System.out.println("Enter the first name of contact you wish to delete");
+        String delete = sc.next();
+        contactList.removeIf(contact->contact.firstName.equals(delete));
+    }
+
     // method for contact list operations
     public static void addContactList(){
         boolean exit=true;
         do{
-            System.out.println("Choose: 1. Display all contacts 2. Add contact 3. Edit contact 4. Exit");
+            System.out.println("Choose: 1. Display all contacts 2. Add contact 3. Edit contact 4. Delete contact 5. Exit");
             int option=sc.nextInt();
             switch(option){
                 case 1:
@@ -114,6 +122,9 @@ public class AddressBookMain {
                     editContact();
                     break;
                 case 4:
+                    deleteContact();
+                    break;
+                case 5:
                     exit=false;
                     break;
                 default:
