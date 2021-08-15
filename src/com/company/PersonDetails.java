@@ -9,7 +9,6 @@ public class PersonDetails {
     long phoneNumber;
 
     public PersonDetails(){
-
     }
 
     public PersonDetails(String firstName,String lastName,String address,String city, String state, String email, int zipCode,long phoneNumber){
@@ -71,5 +70,6 @@ public class PersonDetails {
     public long getPhoneNumber() {
         return phoneNumber;
     }
+
 }
 
