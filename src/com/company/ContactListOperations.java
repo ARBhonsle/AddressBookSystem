@@ -7,16 +7,22 @@ public class ContactListOperations {
     static Scanner sc=new Scanner(System.in);
 
     // method adds contact of multiple people
-    public static void addContact(PersonDetails person, ArrayList<PersonDetails> contactList){
+    public static void addContact(ArrayList<PersonDetails> contactList){
         System.out.println("Number of contacts to be added");
         int number= sc.nextInt();
         for (int i=0;i<number;i++){
-            person=new PersonDetails();
+            PersonDetails person = new PersonDetails();
             System.out.println("Give details of contact person:");
             System.out.println("Person First Name: ");
-            person.setFirstName(sc.next());
+            String firstName = sc.next();
             System.out.println("Person Last Name: ");
-            person.setLastName(sc.next());
+            String lastName = sc.next();
+            if(findByName(firstName,lastName,contactList)){
+                System.out.println("Person exists by this name, cannot create duplicate contact");
+                break;
+            }
+            person.setFirstName(firstName);
+            person.setLastName(lastName);
             System.out.println("Address: ");
             person.setAddress(sc.next());
             System.out.println("City: ");
@@ -100,5 +106,14 @@ public class ContactListOperations {
         System.out.println("Enter the first name of contact you wish to delete");
         String delete = sc.next();
         contactList.removeIf(contact->contact.firstName.equals(delete));
+    }
+
+    public static boolean findByName(String fname, String lname, ArrayList<PersonDetails> contactList){
+        for(PersonDetails person : contactList){
+            if(person.getFirstName().equals(fname) && person.getLastName().equals(lname)){
+                return true;
+            }
+        }
+        return false;
     }
 }

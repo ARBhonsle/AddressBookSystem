@@ -49,7 +49,7 @@ public class AddressBookMain {
                             ContactListOperations.displayContact(contactList);
                             break;
                         case 2:
-                            ContactListOperations.addContact(null,contactList);
+                            ContactListOperations.addContact(contactList);
                             break;
                         case 3:
                             ContactListOperations.editContact(contactList);
