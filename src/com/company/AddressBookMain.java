@@ -31,7 +31,7 @@ public class AddressBookMain {
     public static void addContactList() {
         boolean exit = true;
         do {
-            System.out.println("Choose: 1. Display all Address Book 2. Add new Address Book 3. Modify Address Book 4. 4. Find person by city or state 5. View person by city or state 6. Exit");
+            System.out.println("Choose: 1. Display all Address Book 2. Add new Address Book 3. Modify Address Book 4. 4. Find person by city or state 5. View person by city or state 6. Count persons found by city or state 7. Exit");
             int option = sc.nextInt();
             switch (option) {
                 case 1:
@@ -87,6 +87,14 @@ public class AddressBookMain {
                     ContactListOperations.printPersonByCityOrState(city, state, dictionaryBook);
                     break;
                 case 6:
+                    System.out.println("Find people by city or state in address books");
+                    System.out.println("Give city: ");
+                    city = sc.next();
+                    System.out.println("Give State: ");
+                    state = sc.next();
+                    ContactListOperations.countPersonByCityOrState(city, state, dictionaryBook);
+                    break;
+                case 7:
                     exit = false;
                     break;
                 default:

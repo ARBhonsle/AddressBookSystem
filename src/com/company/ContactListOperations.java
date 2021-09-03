@@ -133,4 +133,12 @@ public class ContactListOperations {
         System.out.println("Persons by State:"+state);
         System.out.println(StateDictionary.values().stream().collect(Collectors.toList()));
     }
+    public static void countPersonByCityOrState(String city, String state, Hashtable<String, ArrayList<PersonDetails>> dictionaryBook){
+        CityDictionary.put(city,findByCityOrState(city,"",dictionaryBook));
+        StateDictionary.put(state,findByCityOrState("",state,dictionaryBook));
+        System.out.println("Number of Persons by city:"+city);
+        System.out.println(CityDictionary.values().stream().count());
+        System.out.println("Number of Persons by State:"+state);
+        System.out.println(StateDictionary.values().stream().count());
+    }
 }
