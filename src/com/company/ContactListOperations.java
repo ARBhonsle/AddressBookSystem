@@ -1,10 +1,11 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ContactListOperations {
     static Scanner sc=new Scanner(System.in);
+    static HashMap<String, List<PersonDetails>> CityDictionary, StateDictionary;
 
     // method adds contact of multiple people
     public static void addContact(ArrayList<PersonDetails> contactList){
@@ -115,5 +116,23 @@ public class ContactListOperations {
             }
         }
         return false;
+    }
+
+    public static List<PersonDetails> findByCityOrState(String city, String state, Hashtable<String,ArrayList<PersonDetails>> dictionaryBook){
+        List<PersonDetails> persons = new ArrayList<>();
+        for (List<PersonDetails> personlist: dictionaryBook.values()) {
+            personlist = personlist.stream().filter(person -> person.getCity().equals(city) || person.getState().equals(state)).collect(Collectors.toList());
+            persons.addAll(personlist);
+        }
+        return persons;
+    }
+
+    public static void printPersonByCityOrState(String city, String state, Hashtable<String, ArrayList<PersonDetails>> dictionaryBook){
+        CityDictionary.put(city,findByCityOrState(city,"",dictionaryBook));
+        StateDictionary.put(state,findByCityOrState("",state,dictionaryBook));
+        System.out.println("Persons by city:"+city);
+        System.out.println(CityDictionary.values().stream().collect(Collectors.toList()));
+        System.out.println("Persons by State:"+state);
+        System.out.println(StateDictionary.values().stream().collect(Collectors.toList()));
     }
 }
