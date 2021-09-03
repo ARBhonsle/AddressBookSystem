@@ -125,5 +125,12 @@ public class ContactListOperations {
         }
         return persons;
     }
-
+    public static void printPersonByCityOrState(String city, String state, Hashtable<String, ArrayList<PersonDetails>> dictionaryBook){
+        CityDictionary.put(city,findByCityOrState(city,"",dictionaryBook));
+        StateDictionary.put(state,findByCityOrState("",state,dictionaryBook));
+        System.out.println("Persons by city:"+city);
+        System.out.println(CityDictionary.values().stream().collect(Collectors.toList()));
+        System.out.println("Persons by State:"+state);
+        System.out.println(StateDictionary.values().stream().collect(Collectors.toList()));
+    }
 }
