@@ -1,23 +1,24 @@
 package com.company;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
+import com.company.*;
 
 /**
  * Address Book creates contact list, adds new contacts, edits contact info, deletes contact info, add multiple contacts
  */
 public class AddressBookMain {
     // variables
-    static ArrayList<PersonDetails> contactList = new ArrayList<>();
+    static ArrayList<PersonDetails> contactList;
     static Hashtable<String,ArrayList<PersonDetails>> dictionaryBook=new Hashtable<>();
 
     static Scanner sc=new Scanner(System.in);
 
     // add address book method
-    static void addAddressBook(){
-        System.out.println("Address Book Name: ");
-        String name=sc.next();
-        ArrayList<PersonDetails> contact=new ArrayList<>();
-        dictionaryBook.put(name,contact);
+    static void addAddressBook(String name){
+        contactList=new ArrayList<>();
+        dictionaryBook.put(name,contactList);
     }
     // display address book
     static void displayAddressBook(){
@@ -31,19 +32,23 @@ public class AddressBookMain {
     public static void addContactList(){
         boolean exit=true;
         do{
-            System.out.println("Choose: 1. Display all Address Book 2. Add new Address Book 3. 3. Modify Address Book 4. Exit");
+            System.out.println("Choose: 1. Display all Address Book 2. Add new Address Book 3. Modify Address Book 4. Find person by city or state 5. Exit");
             int option=sc.nextInt();
             switch(option){
                 case 1:
                     displayAddressBook();
                     break;
                 case 2:
-                    addAddressBook();
+                    System.out.println("Address Book Name: ");
+                    String name=sc.next();
+                    addAddressBook(name);
                     break;
                 case 3:
                     System.out.println("Choose: 1. Display all contacts 2. Add contact 3. Edit contact 4. Delete contact");
                     option=sc.nextInt();
-                    String name;
+                    System.out.println("Enter Address Book Name");
+                    String nameAddr = sc.next();
+                    contactList = dictionaryBook.get(nameAddr);
                     switch (option){
                         case 1:
                             ContactListOperations.displayContact(contactList);
@@ -63,6 +68,18 @@ public class AddressBookMain {
                     }
                     break;
                 case 4:
+                    System.out.println("Find people by city or state in address books");
+                    System.out.println("Give city: ");
+                    String city = sc.next();
+                    System.out.println("Give State: ");
+                    String state = sc.next();
+                    if(ContactListOperations.findByCityOrState(city,state,dictionaryBook) == null){
+                        System.out.println("No people found matching search");
+                    }else{
+                        ContactListOperations.findByCityOrState(city,state,dictionaryBook);
+                    }
+                    break;
+                case 5:
                     exit=false;
                     break;
                 default:
@@ -72,7 +89,37 @@ public class AddressBookMain {
         }while(exit);
     }
 
-    public static void main(String[] args) {
+    public static void Test(){
+        String name = "Add";
+        addAddressBook(name);
+        name = "Add1";
+        addAddressBook(name);
+        contactList = dictionaryBook.get("Add");
+        PersonDetails person = new PersonDetails();
+        person.setFirstName("First");
+        person.setLastName("Last");
+        person.setAddress("Addr");
+        person.setCity("City");
+        person.setState("State");
+        person.setZipCode(879798);
+        person.setEmail("Email");
+        person.setPhoneNumber(8098098);
+        contactList = dictionaryBook.get("Add1");
+        contactList.add(person);
+        person = new PersonDetails();
+        person.setFirstName("First1");
+        person.setLastName("Last1");
+        person.setAddress("Addr");
+        person.setCity("City");
+        person.setState("State");
+        person.setZipCode(879798);
+        person.setEmail("Email");
+        person.setPhoneNumber(8098098);
+        contactList.add(person);
+        System.out.println(ContactListOperations.findByCityOrState("City","State",dictionaryBook));
+    }
+
+    public static void main(String[] args){
         System.out.println("Welcome to Address Book Program");
         addContactList();
     }

@@ -7,6 +7,7 @@ import com.company.*;
  */
 public class AddressBookDictionary {
     public static void main(String[] args){
+        System.out.println("Welcome to Address Book Program");
         AddressBookMain.addContactList();
     }
 }
