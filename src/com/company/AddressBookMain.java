@@ -33,7 +33,8 @@ public class AddressBookMain {
         boolean exit = true;
         do {
             System.out.println("Choose: 1. Display all Address Book 2. Add new Address Book 3. Modify Address Book 4. Find person by city or state");
-            System.out.println("5. View person by city or state 6. Count persons found by city or state 7. Sort address book alphabetically 8. Sort address book by city, state or zip code 9. Exit");
+            System.out.println("5. View person by city or state 6. Count persons found by city or state 7. Sort address book alphabetically");
+            System.out.println("8. Sort address book by city, state or zip code 9. File read and write 10. Exit");
             int option = sc.nextInt();
             switch (option) {
                 case 1:
@@ -99,21 +100,26 @@ public class AddressBookMain {
                 case 7:
                     System.out.println("Sorting address book alphabetically");
                     sortedList = ContactListOperations.sortByFirstName(dictionaryBook);
-                    for(List<PersonDetails> list : sortedList){
-                        for (PersonDetails person : list){
+                    for (List<PersonDetails> list : sortedList) {
+                        for (PersonDetails person : list) {
                             person.showDetails();
                         }
                     }
                     break;
                 case 8:
                     sortedList = ContactListOperations.sortEntryByCityStateOrZipCode(dictionaryBook);
-                    for(List<PersonDetails> list : sortedList){
-                        for (PersonDetails person : list){
+                    for (List<PersonDetails> list : sortedList) {
+                        for (PersonDetails person : list) {
                             person.showDetails();
                         }
                     }
                     break;
                 case 9:
+                    System.out.println("File Operations: 1. Read 2. Write ");
+                    option = sc.nextInt();
+                    ContactListOperations.fileActivity(option, dictionaryBook);
+                    break;
+                case 10:
                     exit = false;
                     break;
                 default:
