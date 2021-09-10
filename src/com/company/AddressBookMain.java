@@ -29,11 +29,11 @@ public class AddressBookMain {
 
 
     // method for menu operations
-    public static void addContactList() {
+    public static void addContactList() throws Exception {
         boolean exit = true;
         do {
             System.out.println("Choose: 1. Display all Address Book 2. Add new Address Book 3. Modify Address Book 4. Find person by city or state");
-            System.out.println("5. View person by city or state 6. Count persons found by city or state 7. Sort address book alphabetically 8. Exit");
+            System.out.println("5. View person by city or state 6. Count persons found by city or state 7. Sort address book alphabetically 8. Sort address book by city, state or zip code 9. Exit");
             int option = sc.nextInt();
             switch (option) {
                 case 1:
@@ -106,6 +106,14 @@ public class AddressBookMain {
                     }
                     break;
                 case 8:
+                    sortedList = ContactListOperations.sortEntryByCityStateOrZipCode(dictionaryBook);
+                    for(List<PersonDetails> list : sortedList){
+                        for (PersonDetails person : list){
+                            person.showDetails();
+                        }
+                    }
+                    break;
+                case 9:
                     exit = false;
                     break;
                 default:
@@ -115,7 +123,7 @@ public class AddressBookMain {
         } while (exit);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println("Welcome to Address Book Program");
         addContactList();
     }

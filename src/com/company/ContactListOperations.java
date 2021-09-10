@@ -151,4 +151,38 @@ public class ContactListOperations {
         }
         return sortedList;
     }
+
+    public static ArrayList<List<PersonDetails>> sortEntryByCityStateOrZipCode(Hashtable<String,ArrayList<PersonDetails>> dictionaryBook) throws Exception {
+        sortedList=null;
+        List<PersonDetails> list;
+        Comparator compare;
+        System.out.println("Sort by 1. City 2. State 3. ZipCode ");
+        int choice = sc.nextInt();
+        switch (choice){
+            case 1:
+                System.out.println("Sort by City: ");
+                for(String key : dictionaryBook.keySet()){
+                    list = dictionaryBook.get(key).stream().sorted(Comparator.comparing(PersonDetails::getCity)).collect(Collectors.toList());
+                    sortedList.add(list);
+                }
+                break;
+            case 2:
+                System.out.println("Sort by State: ");
+                for(String key : dictionaryBook.keySet()){
+                    list = dictionaryBook.get(key).stream().sorted(Comparator.comparing(PersonDetails::getState)).collect(Collectors.toList());
+                    sortedList.add(list);
+                }
+                break;
+            case 3:
+                System.out.println("Sort by ZipCode: ");
+                for(String key : dictionaryBook.keySet()){
+                    list = dictionaryBook.get(key).stream().sorted(Comparator.comparing(PersonDetails::getZipCode)).collect(Collectors.toList());
+                    sortedList.add(list);
+                }
+                break;
+            default:
+                throw new Exception("Incorrect input");
+        }
+        return sortedList;
+    }
 }
