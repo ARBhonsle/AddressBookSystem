@@ -71,5 +71,9 @@ public class PersonDetails {
         return phoneNumber;
     }
 
+    public void showDetails(){
+        System.out.println("Person Name: "+this.getFirstName()+" "+this.getLastName()+"\nEmail: "+this.getEmail()+"\nPhone Number: "+this.getPhoneNumber()+"\nAddress: "+this.getAddress()+"\nCity: "+this.getCity()+"\nState: "+this.getState()+"\nZipCode: "+this.getZipCode());
+    }
+
 }
 

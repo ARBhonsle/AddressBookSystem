@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class ContactListOperations {
     static Scanner sc=new Scanner(System.in);
     static HashMap<String,List<PersonDetails>> CityDictionary, StateDictionary;
+    static ArrayList<List<PersonDetails>> sortedList;
 
     // method adds contact of multiple people
     public static void addContact(ArrayList<PersonDetails> contactList){
@@ -140,5 +141,14 @@ public class ContactListOperations {
         System.out.println(CityDictionary.values().stream().count());
         System.out.println("Number of Persons by State:"+state);
         System.out.println(StateDictionary.values().stream().count());
+    }
+    public static ArrayList<List<PersonDetails>> sortByFirstName(Hashtable<String, ArrayList<PersonDetails>> dictionaryBook){
+        sortedList = null;
+        List<PersonDetails> list;
+        for(String key : dictionaryBook.keySet()){
+            list = dictionaryBook.get(key).stream().sorted(Comparator.comparing(PersonDetails::getFirstName)).collect(Collectors.toList());
+            sortedList.add(list);
+        }
+        return sortedList;
     }
 }

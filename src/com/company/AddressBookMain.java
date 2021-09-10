@@ -9,6 +9,7 @@ public class AddressBookMain {
     // variables
     static String city, state;
     static ArrayList<PersonDetails> contactList;
+    static ArrayList<List<PersonDetails>> sortedList;
     static Hashtable<String, ArrayList<PersonDetails>> dictionaryBook;
 
     static Scanner sc = new Scanner(System.in);
@@ -31,7 +32,8 @@ public class AddressBookMain {
     public static void addContactList() {
         boolean exit = true;
         do {
-            System.out.println("Choose: 1. Display all Address Book 2. Add new Address Book 3. Modify Address Book 4. 4. Find person by city or state 5. View person by city or state 6. Count persons found by city or state 7. Exit");
+            System.out.println("Choose: 1. Display all Address Book 2. Add new Address Book 3. Modify Address Book 4. Find person by city or state");
+            System.out.println("5. View person by city or state 6. Count persons found by city or state 7. Sort address book alphabetically 8. Exit");
             int option = sc.nextInt();
             switch (option) {
                 case 1:
@@ -95,6 +97,15 @@ public class AddressBookMain {
                     ContactListOperations.countPersonByCityOrState(city, state, dictionaryBook);
                     break;
                 case 7:
+                    System.out.println("Sorting address book alphabetically");
+                    sortedList = ContactListOperations.sortByFirstName(dictionaryBook);
+                    for(List<PersonDetails> list : sortedList){
+                        for (PersonDetails person : list){
+                            person.showDetails();
+                        }
+                    }
+                    break;
+                case 8:
                     exit = false;
                     break;
                 default:
